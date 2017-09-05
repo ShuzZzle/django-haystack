@@ -619,6 +619,16 @@ class SearchQuerySet(object):
         clone._load_all = self._load_all
         return clone
 
+    def to_json(self):
+        """
+        For Serialization.
+        """
+        # len(self)
+        obj_dict = self.__dict__.copy()
+        del obj_dict['_iter']
+        del obj_dict['log']
+        return obj_dict
+
 
 class EmptySearchQuerySet(SearchQuerySet):
     """
