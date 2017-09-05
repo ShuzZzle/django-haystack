@@ -625,8 +625,10 @@ class SearchQuerySet(object):
         """
         # len(self)
         obj_dict = self.__dict__.copy()
-        del obj_dict['_iter']
-        del obj_dict['log']
+        if '_iter' in obj_dict:
+            del obj_dict['_iter']
+        if 'log' in obj_dict:
+            del obj_dict['log']
         return obj_dict
 
 
